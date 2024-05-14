@@ -1,0 +1,15 @@
+name: Check if pre-release
+on:
+  workflow_dispatch:
+
+jobs:
+  frontend:
+    runs-on: atc-ubuntu-latest
+    outputs:
+      version: ${{ steps.getversion.outputs.version }}
+    steps:
+      - name: Detects if a release is still a pre-release.
+        uses: easyware-io/is-pre-release@v1
+        with:
+          release: v1.0.0
+          token: ${{ secrets.GITHUB_TOKEN }}
